@@ -2,6 +2,8 @@ require 'rails_helper.rb'
 
 feature 'Editing posts' do
   background do
+    user = create(:user)
+    sign_in_with user
     post = create(:post)
 
     visit '/'
