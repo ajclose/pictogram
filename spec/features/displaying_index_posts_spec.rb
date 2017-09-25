@@ -2,12 +2,12 @@ require 'rails_helper.rb'
 
 feature 'Displaying posts on the root page' do
   background do
-    user = create(:user)
-    sign_in_with user
+    @user = create(:user)
+    sign_in_with @user
   end
   scenario 'view posts' do
-    post_one = create(:post, caption: "This is post one")
-    post_two = create(:post, caption: "This is the second post")
+    post_one = create(:post, caption: "This is post one", user_id: @user.id)
+    post_two = create(:post, caption: "This is the second post", user_id: @user.id)
 
     visit '/'
     expect(page).to have_content('This is post one')
